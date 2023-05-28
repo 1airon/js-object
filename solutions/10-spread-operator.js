@@ -1,14 +1,20 @@
 // BEGIN
-const make = (name, proporities = {}) => {
+function make(name, additionalProperties = {}) {
+  const defaultProperties = {
+    state: 'moderating',
+    createdAt: Date.now(),
+  };
 
-    if (!proporities.state) proporities.state = 'moderating'
+  const mergedProperties = {
+    ...defaultProperties,
+    ...additionalProperties
+  };
 
-    if (!proporities.createdAt) proporities.createdAt = Date.now();
-    let company = {
-        'name': name,
-        ...proporities,
-    }
-    return company;
+  const company = {
+    name,
+    ...mergedProperties
+  };
+  return company;
 }
 
 export default make;
